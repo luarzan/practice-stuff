@@ -1,0 +1,427 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, rgba(91,194,228,1) 0%, rgba(91,194,228,1) 46%, rgba(84,174,199,1) 100%);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+
+}
+p{
+    margin:5px 0;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Montserrat', sans-serif;    
+}
+a{
+    font-family: 'Montserrat', sans-serif;   
+}
+/* ......................................................ESTILOS DE MODAL SELECTOR DE CIUDAD Y UNIVERSIDAD */
+.modal{
+    border-radius: 20px;
+}
+.modal-title{
+    padding: 1rem;
+}
+.modal-content-citys,
+.modal-content-cdmx,
+.modal-content-monterrey,
+.modal-content-guadalajara,
+.modal-content-xalapa,
+.modal-content-veracruz,
+.modal-content-puebla{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.cdmx-option,
+.monterrey-option,
+.guadalajara-option,
+.xalapa-option,
+.veracruz-option,
+.puebla-option{
+    display: none;
+}
+.modal-options{
+    border-radius: 50px;
+    /* color:rgba(0,0,0,0.87); */
+    color:white;
+    width: 90%;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding:10px 1rem;
+    text-transform: uppercase;
+    will-change: scale;
+    background: linear-gradient(45deg, rgba(57,181,73,.8) 0%, rgba(34,181,115,.8) 100%);
+    /* box-shadow:0px 9px 11px -1px rgba(0,0,0,0.05); */
+}
+.modal-options:hover{
+    /* border-bottom: solid 3px rgb(251, 149, 47); */
+    background: linear-gradient(45deg, rgba(57,181,73,1) 0%, rgba(34,181,115,1) 100%);
+    transition: .5s;
+    /* box-shadow:0px 9px 11px -1px rgba(0,0,0,0.05); */
+}
+.modal-options:hover{
+    color:white;
+}
+.modal-options:active{
+    background: linear-gradient(45deg, rgba(57,181,73,1) 0%, rgba(34,181,115,1) 100%);
+    transform: scale(.9);
+    color:white;
+}
+
+/* ......................................................TERMINA ESTILOS DE MODAL SELECTOR DE CIUDAD Y UNIVERSIDAD */
+
+
+header{
+    background-color:transparent;
+    position: fixed;
+    left:0;
+    right: 0;
+    top:0;
+    z-index: 1;
+    /* height: 50px; */
+    /* background-color: red; */
+    /* background-color:pink; */
+}
+/* ...................................................................ESTILOS DE SIDENAV */
+.sidenav{
+    background-color: rgb(251, 149, 47);
+    border-radius: 100%;
+    width: 730px;/*730px*/
+    left: -500px;
+    top: -45px;
+    height: calc(100% + 100px);
+    z-index: 999;
+}
+/* ...................................................................TERMINA ESTILOS DE SIDENAV */
+
+/* ...................................................................ESTILOS DE NAVBAR Y SU CONTENIDO */
+.fas{
+    outline: none;
+}
+.fa-bars{
+    outline: none;
+}
+.nav{
+    padding:8px 0px;
+    position: relative;
+    outline: none;
+    /* height: 50px; */
+}
+.nav-icons-wrapper{
+    /* padding:8px 0px; */
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    position: relative;
+}
+/* .university-list-wrapper{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+} */
+
+
+.university-list{
+    position: absolute;
+    width:32rem;
+    top: calc(50% - 13.5px);
+    left: calc(50% - 16rem);
+    font-family: 'Montserrat', sans-serif;
+    padding: 5px 15px;
+    -webkit-user-select: none;
+    color:white;
+    border:none;
+    text-decoration: none;
+    background-color:rgba(255,255,255,.2);
+    box-shadow:0px 9px 11px -1px rgba(0,0,0,0.05);
+    text-transform: uppercase;
+    border-radius: 50px;
+    cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+    box-sizing:border-box;
+    -webkit-user-select: none;
+}
+.university-list:active{
+    transform: scale(.8);
+    transition: 1s;
+}
+
+.university-list:focus{
+    background-color:rgba(255,255,255,.2);
+}
+
+.menu-icons-wrapper{
+    /* background-color: pink; */
+    display: flex;
+    box-sizing: border-box;
+    margin-top:5px;
+}
+.burger-menu{
+    display: none;
+    visibility:hidden;
+    outline: none;
+}
+.notification-icon{
+   color: #FCBF4B;
+}
+.user-icon{
+    color:white;
+}
+.favorite-icon{
+    color: #E73827;
+}
+
+.menu-icon{
+    font-size: 2em;
+    cursor: pointer;
+    margin-right:20px;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+}
+.store-register-button{
+    position: relative;
+    left:3rem;
+    /* margin-top:10px; */
+    color: white;
+    /* width: 150px; */
+    height: 50px;
+    border-radius:50px;
+    padding:0 20px;
+    background: linear-gradient(45deg, rgba(57,181,73,1) 0%, rgba(34,181,115,1) 100%);
+    box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.30);
+    text-decoration: none;
+    text-align: center;
+    line-height: 50px;
+    outline: none;
+    transition: .5s;
+
+}
+.store-register-button:active{
+transform: scale(.9);
+}
+/* .............................................................................ESTILOS DE BARRA DE BUSQUEDA */
+
+/* .search-center{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    height: 50px;
+    position: absolute;
+    left:calc(50% - 20rem);
+}
+input, 
+#search{
+    border: none;
+    margin:0;
+    padding:0;
+    text-align: center;
+    line-height: 45px;
+    width: 80%;
+    height:25px;
+    caret-color:rgba(255,255,255,.5);
+    color:rgba(255,255,255,.9);
+    text-transform:uppercase;
+    outline: none;
+    border-radius: 50px;
+}
+input:focus{
+    border:none;
+    box-shadow: none;
+    background-color:transparent;
+}
+
+#search:focus{
+    border:none;
+    box-shadow: none;  
+    background-color:transparent;
+}
+
+::-webkit-input-placeholder{
+    color: rgba(255,255,255,.5);
+    border:none;
+}
+.search-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:40rem;
+    margin:0 5px;
+}
+
+
+.search{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255,255,255,.3);
+    width:100%;
+    height:30px; 
+    border-radius: 50px;
+
+}
+
+.search-icon{
+    margin-right: 5px;
+    position:relative;
+    right:1.7em;
+    color: white;
+    cursor: pointer;
+} */
+
+/* ..................................................................TERMINAN ESTILOS DE BARRA DE BUSQUEDA */
+
+/* ..................................................................TERMINA ESTILOS DE NAVBAR Y SU CONTENIDO */
+
+
+
+/* ......................................................EMPIEZA ESTILOS DE TITULO(NOMBRE DE UNIVERSIDAD) */
+.school-title-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.school-name{
+    text-transform: uppercase;
+    color:white;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+/* ......................................................TERMINA EMPIEZA ESTILOS DE TITULO(NOMBRE DE UNIVERSIDAD) */
+
+
+
+/* ..............................................................EMPIEZA ESTILOS DE CAROUSEL */
+.carousel{
+/* margin-top:10px; */
+position: relative;
+top: 66px;
+z-index: 0;
+height:calc(100vh - 66px);
+/* background-color: red; */
+/* box-sizing: border-box; */
+}
+.carousel-item{
+display: flex;
+align-items: center;
+padding-bottom: 80px;
+width:100vw;
+box-sizing: border-box;
+}
+.carta-contenedor{
+    box-shadow: 0px 9px 11px -1px rgba(0,0,0,0.05);
+    background-color:white;
+    width: 300px;
+    height: 30rem;
+    border-radius: 300px;
+    overflow: hidden;
+    margin-top: 50px;
+    box-sizing: border-box;
+}
+.carta{
+    /* background-color: pink; */
+    width:100%;
+    height: 100%;
+    box-sizing:border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.carta-contenido{
+    /* background-color: pink; */
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    box-sizing:border-box;
+}
+.carta-img-wrapper{
+    /* background-color: yellow; */
+    width:150px;
+    height: 150px;
+    border-radius:50%;
+    overflow: hidden;
+    position: relative;
+    top: 25px;
+}
+.carta-img{
+    width:100%;
+    box-sizing:border-box;
+  
+}
+.carta-titulo{
+    font-weight: bold;
+}
+.carta-buton{
+    color: white;
+    width: 150px;
+    height: 50px;
+    border-radius:50px;
+    background: linear-gradient(45deg, rgba(57,181,73,1) 0%, rgba(34,181,115,1) 100%);
+    /* box-shadow: inset 0px -3px 0px 0px rgba(0,0,0,0.60); */
+    text-decoration: none;
+    text-align: center;
+    line-height: 50px;
+    outline: none;
+    margin-top: 40px;
+    transition:.5s;
+}
+.carta-buton:active{
+transform: scale(.9);
+}
+
+.available-icon{
+    font-size: 7px;
+    position: relative;
+    top:-3px;
+    margin:0 3px 0 0;
+    color: rgb(18, 231, 25);
+}
+/* .................................................................EMPIEZA ESTILOS DE ESTRELLAS DE RATING */
+label{
+    font-size:17px;
+    color:rgba(235, 235, 235, 0.9);
+    cursor: pointer;
+}
+input[type = "radio"]{
+    display: none;
+    outline: none !important;
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+}
+input[type= "radio"]:focus{
+outline: none !important;
+-webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+}
+input[type= "radio"]:active{
+outline:none !important;
+-webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+}
+input[type= "radio"]::selection{
+    outline:none !important;
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+    }
+.star-wrapper{
+    direction: rtl;
+    unicode-bidi: bidi-override;
+}
+label:hover,
+label:hover ~ label{
+    color: rgba(255,246,5);
+    outline: none !important;
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+}
+input[type = "radio"]:checked ~ label{
+    color: rgba(255,246,5);
+    outline: none !important;
+    -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+}
+/* .................................................................TERMINA ESTILOS DE ESTRELLAS DE RATING */
+
+/* ...............................................................................TERMINA ESTILOS DE CAROUSEL */
