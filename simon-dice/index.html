@@ -1,0 +1,220 @@
+<!-- -----------------------Simon dice -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Archivo" rel="stylesheet">
+    <title>Simon Dice</title>
+
+</head>
+<body>
+        <button id="btn-start" onclick="init()" class="btn-begin">PLAY</button>
+        <div class="container">
+                <div id="circle" class ="circle">
+                    <img class ="polar" src="polar-center.png" alt="polar">
+                </div>
+                <div id="blue" class="color blue" data-color="blue"></div>
+                <div id="red" class="color red" data-color="red"></div>
+                <div id="green" class="color green" data-color="green"></div>
+                <div id="orange" class="color orange" data-color="orange"></div>
+            </div>
+            <h1 class="score"></h1>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js">
+            </script>
+            <script>
+                
+                const blue = document.getElementById('blue')
+                const red = document.getElementById('red')
+                const green = document.getElementById('green')
+                const orange = document.getElementById('orange')
+                const circle = document.getElementById('circle')
+                const btnEmpezar = document.getElementById("btn-start")
+                var score = document.queryCommandEnabled(".score")
+                const lastLevel = 100
+            
+            class Juego {
+
+                constructor(){
+                    this.startGame()
+                    this.startSequence()
+                    setTimeout(() => {
+                    this.nextLevel()
+                    },1000)
+                    
+                }
+
+
+                startGame(){
+                    this.chooseColor = this.chooseColor.bind(this)
+                    this.startGame = this.startGame.bind(this)
+                    this.toggleBtnStart()
+                    this.level = 1
+                    this.colors = {
+                        blue,
+                        red,
+                        green,
+                        orange
+                    }
+                }
+
+                toggleBtnStart(){
+                    if(btnEmpezar.classList.contains('hide')){
+                        btnEmpezar.classList.remove('hide')
+                    }else{
+                        btnEmpezar.classList.add('hide')
+                    }
+                }
+                nextLevel(){
+                    this.subLevel = 0
+                    this.attrName = 'valor'
+                    this.illuminateSequence()
+                    this.addClickEvent()
+                }
+
+                transformColorToNum(color){
+                    switch(color){
+                        case 'blue':
+                        return 0
+                        case 'red':
+                        return 1
+                        case 'green':
+                        return 2
+                        case 'orange':
+                        return 3
+                    }
+                }
+
+                transformNumToColor(number){
+                    switch(number){
+                        case 0:
+                        return 'blue'
+                        case 1:
+                        return 'red'
+                        case 2:
+                        return 'green'
+                        case 3:
+                        return 'orange'
+                    }
+                }
+                illuminateCircle(colorCircle){
+                    switch(colorCircle){
+                        case 0:
+                        circle.classList.add('color-blue')
+                        circle.classList.remove('color-red')
+                        circle.classList.remove('color-green')
+                        circle.classList.remove('color-orange')
+                        break;
+                        case 1:
+                        circle.classList.add('color-red')
+                        circle.classList.remove('color-blue')
+                        circle.classList.remove('color-green')
+                        circle.classList.remove('color-orange')
+                        break;
+                        case 2:
+                        circle.classList.add('color-green')
+                        circle.classList.remove('color-red')
+                        circle.classList.remove('color-blue')
+                        circle.classList.remove('color-orange')
+                        break;
+                        case 3:
+                        circle.classList.add('color-orange')
+                        circle.classList.remove('color-red')
+                        circle.classList.remove('color-green')
+                        circle.classList.remove('color-blue')
+                        break;
+                    }
+                }
+
+                illuminateSequence(){
+                    for( let i = 0;i<this.level;i++){
+                        const color = this.transformNumToColor(this.sequence[i])
+                        setTimeout(() => this.illuminateColor(color),1000 * i)
+                    }
+                }
+                
+                illuminateColor(color){
+                    this.colors[color].classList.add('light')
+                    setTimeout(() => this.turnOffColor(color),350)
+                }
+
+                turnOffColor(color){
+                    this.colors[color].classList.remove('light')
+                }
+
+                startSequence(){
+                    this.sequence = new Array(lastLevel).fill(0).map(n => Math.floor(Math.random() * 4))
+                }
+
+                addClickEvent(){
+                    this.colors.blue.addEventListener('click',this.chooseColor)
+                    this.colors.red.addEventListener('click',this.chooseColor)
+                    this.colors.green.addEventListener('click',this.chooseColor)
+                    this.colors.orange.addEventListener('click',this.chooseColor)
+                }
+
+                removeClickEvent(){
+                    this.colors.blue.removeEventListener('click',this.chooseColor)
+                    this.colors.red.removeEventListener('click',this.chooseColor)
+                    this.colors.green.removeEventListener('click',this.chooseColor)
+                    this.colors.orange.removeEventListener('click',this.chooseColor)
+                }
+
+                chooseColor(event){
+                    this.sound()
+                    const colorName = event.target.dataset.color
+                    const colorNumber = this.transformColorToNum(colorName)
+                    this.illuminateCircle(colorNumber)
+                    // this.illuminateColor(colorName)
+
+                    if (colorNumber === this.sequence[this.subLevel]){
+                        this.subLevel++
+                        
+                        if(this.subLevel === this.level){
+                            this.level++
+                            this.removeClickEvent()
+                            if(this.level === (lastLevel + 1)){
+                                this.win()
+                            }else{
+                             setTimeout(() => this.nextLevel(),1000)
+                            }
+                        }
+                        
+                    }else{
+                        this.lose()
+                        
+
+                    }
+                }
+
+             
+                win(){
+                    swal("FELICIDADES Simon dice ganaste","","success")
+                    this.startGame()
+                }
+                lose(){
+                    swal("OH NO! Polar dice que perdiste","","error")
+                    this.removeClickEvent()
+                    this.youLost()
+                    this.startGame()
+                }
+            sound(){
+                var snd = new Audio("btnsound.wav")
+                snd.play()
+            }
+            youLost(){
+                 var sndLost = new Audio("btnerror.wav")
+                 sndLost.play()
+             }
+            }
+
+                
+            function init(){
+                var juego = new Juego()
+            }
+
+            </script>
+</body>
+</html>
